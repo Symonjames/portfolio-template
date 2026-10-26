@@ -1,5 +1,5 @@
 import { useState, type FormEvent } from 'react'
-import { PaperPlaneTilt, CheckCircle, WarningCircle, EnvelopeSimple, ArrowUpRight, CaretDown } from '@/components/slab'
+import { PaperPlaneTilt, CheckCircle, WarningCircle, EnvelopeSimple, Phone, ArrowUpRight, CaretDown } from '@/components/slab'
 import { FAQS } from '@/data/faqs'
 import { profile } from '@/data/profile'
 import { readLead, submitLead, SubmitError, MAX_NAME, MAX_EMAIL, MAX_MESSAGE, type SubmitResult } from '@/lib/contact'
@@ -60,10 +60,10 @@ export default function ContactGrid() {
       <header className="pgrid__head">
         <span className="pgrid__eyebrow">FAQs / Contact</span>
         <h1 className="pgrid__title" id="contact-title">
-          Your contact headline goes here.
+          Let's talk data, roles, or reports.
         </h1>
         <p className="pgrid__lede">
-          PLACEHOLDER - tell me what to put here: one or two lines inviting people to write and saying what they get back.
+          Write below, email me, or call - I usually reply within a couple of business days.
         </p>
       </header>
 
@@ -108,10 +108,20 @@ export default function ContactGrid() {
               <EnvelopeSimple size={16} weight="fill" aria-hidden="true" />
               <span>{profile.email}</span>
             </a>
+            <a className="cgrid__mail" href={profile.phoneHref}>
+              <Phone size={16} weight="fill" aria-hidden="true" />
+              <span>{profile.phone}</span>
+            </a>
             <ul className="cgrid__socials" role="list">
-              {profile.socials.map((s) => (
+              {profile.socials.filter((s) => s.href !== 'mailto:' + profile.email).map((s) => (
                 <li key={s.label}>
-                  <a className="cgrid__social" href={s.href} target="_blank" rel="noopener noreferrer" aria-label={s.label}>
+                  <a
+                    className="cgrid__social"
+                    href={s.href === '#' ? `mailto:${profile.email}` : s.href}
+                    target={s.href === '#' ? undefined : '_blank'}
+                    rel="noopener noreferrer"
+                    aria-label={s.label}
+                  >
                     <img src={s.iconPath} alt="" loading="lazy" decoding="async" />
                   </a>
                 </li>
@@ -169,12 +179,12 @@ export default function ContactGrid() {
               </label>
 
               <label className="cgrid__field cgrid__field--grow">
-                <span className="cgrid__label">Tell me more about your business</span>
+                <span className="cgrid__label">Your message</span>
                 <textarea
                   name="message"
                   required
                   maxLength={MAX_MESSAGE}
-                  placeholder="What do you need help with? What are you working with today?"
+                  placeholder="Tell me about the role, the project, or the data problem you need looked at."
                 />
               </label>
 
@@ -197,7 +207,7 @@ export default function ContactGrid() {
                     {status.note}
                   </span>
                 ) : (
-                  <span className="cgrid__hint">Short reassurance line, e.g. your reply time.</span>
+                  <span className="cgrid__hint">I usually reply within a couple of business days.</span>
                 )}
               </div>
             </form>

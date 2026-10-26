@@ -3,8 +3,7 @@ import { useNavigate } from 'react-router-dom'
 import { profile } from '@/data/profile'
 
 /**
- * Terms of Service - PLACEHOLDER. Legal text has to fit YOUR business, so
- * none is supplied. Paste your own terms into the sections below.
+ * Terms of Service for this personal portfolio.
  */
 export default function ToS() {
   const navigate = useNavigate()
@@ -22,20 +21,28 @@ export default function ToS() {
         </button>
 
         <h1 className="legal-page__title">Terms of Service</h1>
-        <p className="legal-page__updated">Last updated: PLACEHOLDER date</p>
+        <p className="legal-page__updated">Last updated: October 2026</p>
 
         <div className="legal-page__body">
           <h2>Using this site</h2>
-          <p>PLACEHOLDER - tell me what to put here: the basic terms for visiting this site.</p>
+          <p>
+            This is a personal portfolio to present {profile.name}&#39;s work, skills and
+            experience. You are welcome to browse it and to get in touch about roles or projects.
+          </p>
 
-          <h2>Work and payment</h2>
-          <p>PLACEHOLDER - tell me what to put here: how projects are scoped, billed and delivered.</p>
+          <h2>About the work shown</h2>
+          <p>
+            The projects, experience and certifications shown here reflect work documented in my
+            resume. Details are described to the best of my knowledge; nothing is meant to
+            misrepresent employers, clients or results.
+          </p>
 
           <h2>Ownership</h2>
-          <p>PLACEHOLDER - tell me what to put here: who owns the work and the content on this site.</p>
-
-          <h2>Liability</h2>
-          <p>PLACEHOLDER - tell me what to put here: your limits of liability.</p>
+          <p>
+            The content of this site &#40;text, layout, and design&#41; belongs to me unless stated
+            otherwise. Project write-ups describe work I performed for the organizations noted on
+            each project page.
+          </p>
 
           <h2>Contact</h2>
           <p>

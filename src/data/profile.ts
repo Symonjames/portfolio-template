@@ -1,16 +1,11 @@
-/**
- * YOUR IDENTITY - start here.
- *
- * Everything that says who you are lives in this file: name, handle, photo,
- * socials, email and the Home headline. Every value below is a PLACEHOLDER.
- * Replace the text, or hand this file to your AI assistant and tell it what
- * to put in each field.
- *
- * Page-specific copy (projects, services, testimonials, FAQs) lives in the
- * other files in src/data/ and at the top of each view component.
- */
-
 import { Briefcase, SealCheck, Clock, type Icon } from '@/components/slab'
+
+/**
+ * YOUR IDENTITY - the one source for everywhere Symon appears: the rail, the
+ * phone profile header, the Home lede and headline, About and Contact.
+ * Page-specific copy (projects, skills, education, FAQs) lives in the other
+ * files in src/data/ and at the top of each view component.
+ */
 
 export type SocialLink = {
   label: string
@@ -23,7 +18,7 @@ export type Stat = { value: string; label: string; Icon: Icon }
 
 export type Profile = {
   name: string
-  /** First name, used in "Hi, I'm ___." on About. */
+  /** First name, used in "Hi, I'm ___." */
   firstName: string
   handle: string
   /** Short role line under the handle on phones. */
@@ -33,7 +28,12 @@ export type Profile = {
   /** Tooltip / screen-reader label on the verified tick next to your name. */
   verifiedLabel: string
   email: string
+  /** International format, as shown on the Contact page. */
+  phone: string
+  /** href for a dialer link on phones. */
+  phoneHref: string
   location: string
+  timezone: string
   /** Three short proof facts shown on phones under the Home lede. */
   stats: Stat[]
   displayName: { line1: string; line2: string }
@@ -46,31 +46,33 @@ export type Profile = {
 }
 
 export const profile: Profile = {
-  name: 'Your Name',
-  firstName: 'Your Name',
-  handle: '@yourhandle',
-  role: 'PLACEHOLDER - your title',
+  name: 'Symon James Gasino',
+  firstName: 'Symon',
+  handle: '@symongasino',
+  role: 'Data Analyst · Sales Reporting Analyst',
   avatarSrc: '/avatar.svg',
-  verifiedLabel: 'PLACEHOLDER - what the tick means (e.g. a certification)',
-  email: 'you@example.com',
-  location: 'PLACEHOLDER - your city or timezone',
-  // Pick any icon from https://phosphoricons.com and import it above.
+  verifiedLabel: 'Google Data Analytics Professional Certificate',
+  email: 'symongasino7@gmail.com',
+  phone: '+63 960 934 3176',
+  phoneHref: 'tel:+639609343176',
+  location: 'Batangas, Philippines',
+  timezone: 'GMT+8',
   stats: [
-    { value: '0 yrs', label: 'PLACEHOLDER', Icon: Briefcase },
-    { value: '#000', label: 'PLACEHOLDER', Icon: SealCheck },
-    { value: 'GMT+0', label: 'PLACEHOLDER', Icon: Clock },
+    { value: '6 mo', label: 'Analyst internship', Icon: Briefcase },
+    { value: '5', label: 'Certifications', Icon: SealCheck },
+    { value: 'GMT+8', label: 'Batangas · PH', Icon: Clock },
   ],
   // The intro types this line, then flies it into the Home headline.
   // Keep it short: two halves, 5-8 words total.
-  displayName: { line1: 'Your headline here.', line2: 'Keep it short.' },
+  displayName: { line1: 'Turning raw data', line2: 'into clear decisions.' },
   hero: {
-    body: 'PLACEHOLDER - one line on what you do and who you do it for.',
+    body: 'Data analyst turning messy operational data into clean reports, dashboards, and decisions you can act on.',
     portraitSrc: '/avatar.svg',
-    portraitAlt: 'Portrait placeholder',
+    portraitAlt: 'Portrait of Symon James Gasino',
   },
   socials: [
-    { label: 'Facebook profile', href: '#', iconPath: '/icons/facebook.svg' },
+    // TODO(placeholder): paste your LinkedIn profile URL below.
     { label: 'LinkedIn profile', href: '#', iconPath: '/icons/linkedin.svg' },
-    { label: 'Discord profile', href: '#', iconPath: '/icons/discord.svg' },
+    { label: 'Email me', href: 'mailto:symongasino7@gmail.com', iconPath: '/icons/linkedin.svg' },
   ],
 }

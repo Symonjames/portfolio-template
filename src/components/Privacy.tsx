@@ -3,9 +3,7 @@ import { useNavigate } from 'react-router-dom'
 import { profile } from '@/data/profile'
 
 /**
- * Privacy Policy - PLACEHOLDER. Legal text has to describe YOUR site and what
- * it collects, so none is supplied. Write it (or have a lawyer or a policy
- * generator write it) and paste it into the sections below.
+ * Privacy Policy for this personal portfolio.
  */
 export default function Privacy() {
   const navigate = useNavigate()
@@ -23,20 +21,33 @@ export default function Privacy() {
         </button>
 
         <h1 className="legal-page__title">Privacy Policy</h1>
-        <p className="legal-page__updated">Last updated: PLACEHOLDER date</p>
+        <p className="legal-page__updated">Last updated: October 2026</p>
 
         <div className="legal-page__body">
           <h2>Who this covers</h2>
-          <p>PLACEHOLDER - tell me what to put here: who runs this site and which sites this policy applies to.</p>
+          <p>
+            This site is the personal portfolio of {profile.name}, {profile.role}, based in{' '}
+            {profile.location}. It applies to this website only.
+          </p>
 
           <h2>What is collected</h2>
-          <p>PLACEHOLDER - tell me what to put here: what the contact form and any analytics collect.</p>
+          <p>
+            This site does not run analytics, advertising, or tracking scripts. Nothing about your
+            visit is recorded by the site itself. The contact form has a hidden anti-spam field
+            that bots may fill in; it is not personal data and is only used to filter spam.
+          </p>
 
-          <h2>How it is used</h2>
-          <p>PLACEHOLDER - tell me what to put here: what you do with that data and who else sees it.</p>
+          <h2>What happens to a message you send</h2>
+          <p>
+            When you use the contact form, your name, email address and message are sent to me so I
+            can reply. They are not shared with anyone else and are not added to any mailing list.
+          </p>
 
           <h2>How long it is kept</h2>
-          <p>PLACEHOLDER - tell me what to put here: retention periods and how to ask for deletion.</p>
+          <p>
+            Messages are kept only as long as needed to answer them, or for as long as a
+            conversation about work is useful. You can ask me to delete your message at any time.
+          </p>
 
           <h2>Contact</h2>
           <p>

@@ -45,10 +45,16 @@ export default function Home() {
           </h1>
 
           {!phone && (
-            <Link className="home__cta" to="/contact">
-              Get in touch
-              <ArrowUpRight size={16} weight="bold" aria-hidden="true" />
-            </Link>
+            <span className="home__cta-row">
+              <Link className="home__cta home__cta--ghost" to="/projects">
+                View my work
+                <ArrowUpRight size={16} weight="bold" aria-hidden="true" />
+              </Link>
+              <Link className="home__cta" to="/contact">
+                Get in touch
+                <ArrowUpRight size={16} weight="bold" aria-hidden="true" />
+              </Link>
+            </span>
           )}
         </div>
 

@@ -11,7 +11,6 @@ import { restorePrefs } from '@/lib/a11y'
 const ProjectsView = lazy(() => import('@/views/ProjectsView'))
 const ServicesView = lazy(() => import('@/views/ServicesView'))
 const ShowcaseView = lazy(() => import('@/views/ShowcaseView'))
-const TestimonialsGrid = lazy(() => import('@/components/TestimonialsGrid'))
 const AboutGrid = lazy(() => import('@/components/AboutGrid'))
 const ContactGrid = lazy(() => import('@/components/ContactGrid'))
 const Privacy = lazy(() => import('@/components/Privacy'))
@@ -25,12 +24,12 @@ import './styles/theme-glyph.css'
 // equal-specificity rules are decided by source order.
 import './styles/sections.css'
 import './styles/extensions.css'
-import './styles/ai-stack.css'
 import './styles/shell.css'
 import './styles/rail.css'
 import './styles/home.css'
 import './styles/bento.css'
 import './styles/projects-grid.css'
+import './styles/ppanel-article.css'
 import './styles/services-grid.css'
 import './styles/showcase.css'
 import './styles/testimonials-grid.css'
@@ -67,7 +66,6 @@ createRoot(container).render(
           <Route path="/projects" element={<ProjectsView />} />
           <Route path="/services" element={<ServicesView />} />
           <Route path="/showcase" element={<ShowcaseView />} />
-          <Route path="/testimonials" element={<TestimonialsGrid />} />
           <Route path="/about" element={<AboutGrid />} />
           <Route path="/contact" element={<ContactGrid />} />
         </Route>

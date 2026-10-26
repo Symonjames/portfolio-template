@@ -168,6 +168,21 @@
   object-position: top;
   border-radius: 7px;
 }
+/* Text-only shot: a named project on a doc card instead of a screenshot,
+   used where there is no real image to show. */
+.bento__shot--doc {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 64px;
+  font-size: 12px;
+  font-weight: 600;
+  line-height: 1.35;
+  text-align: center;
+  color: var(--navy);
+  padding: 22px 12px 12px;
+  background: linear-gradient(135deg, var(--tint), var(--white) 60%);
+}
 @keyframes bento-drift-up {
   from { transform: translateY(0); }
   to   { transform: translateY(-50%); }

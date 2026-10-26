@@ -1,31 +1,13 @@
-import { useEffect, useState, type ReactNode } from 'react'
-import { Ticket, Robot, FlowArrow, type Icon } from '@/components/slab'
-import { lazy, Suspense } from 'react'
-import WorkflowSamples from './WorkflowSamples'
-import AIStackGrid from './AIStackGrid'
-import { AppsSection } from './Projects'
-import { useFunnelModal } from './FunnelModal'
-import { websiteFunnel } from '@/data/funnels'
-
-const FunnelBarrel = lazy(() => import('./FunnelBarrel'))
+import type { ReactNode } from 'react'
+import { workProjects, type WorkProject } from '@/data/projects'
 
 /**
- * What the Projects dialogs show. Each panel is the work itself, on screen
- * the moment the dialog opens - no section chrome to read past and no second
- * dialog to click into.
+ * What the Projects dialogs show. Each panel is the work itself, in a plain
+ * mac-style window: the project summary, the concrete bullets from the resume,
+ * and the tools it was built with. No placeholder pages, no iframes.
  */
 
-/** Only the strip of macOS windows, drifting on the backdrop. No window. */
-export function AutomationsPanel() {
-  return (
-    <div className="ppanel ppanel--strip">
-      <WorkflowSamples />
-    </div>
-  )
-}
-
-/** A plain mac window with a scrolling body, for the sections that are
- *  pages rather than frames. */
+/** A mac window with a scrolling body. */
 function SectionWindow({ label, children }: { label: string; children: ReactNode }) {
   return (
     <div className="ppanel ppanel--window">
@@ -44,110 +26,58 @@ function SectionWindow({ label, children }: { label: string; children: ReactNode
   )
 }
 
-/** Only the barrel, spinning on the backdrop. Its own page preview still
- *  stacks above (z 9000). */
-export function BarrelPanel() {
-  const { openFull, modal } = useFunnelModal()
+/** The inside of the window: summary, highlights, tools. */
+function WorkArticle({ p }: { p: WorkProject }) {
   return (
-    <div className="ppanel ppanel--barrel">
-      <Suspense fallback={<div className="funnels__barrel-skeleton" aria-hidden="true" />}>
-        <FunnelBarrel funnels={websiteFunnel} onOpen={openFull} />
-      </Suspense>
-      {modal}
-    </div>
+    <article className="ppanel__article">
+      <header className="ppanel__article-head">
+        <span className="ppanel__article-kind">{p.kind}</span>
+        <h3 className="ppanel__article-title">{p.name}</h3>
+        {p.period && <span className="ppanel__article-meta">{p.period}</span>}
+        <span className="ppanel__article-meta">{p.org}</span>
+      </header>
+
+      <p className="ppanel__article-lead">{p.description}</p>
+
+      <h4 className="ppanel__article-subhead">What the work involved</h4>
+      <ul className="ppanel__article-list" role="list">
+        {p.highlights.map((h) => (
+          <li key={h}>{h}</li>
+        ))}
+      </ul>
+
+      <h4 className="ppanel__article-subhead">Tools and methods</h4>
+      <ul className="ppanel__article-tools" role="list">
+        {p.tools.map((t) => (
+          <li key={t} className="ppanel__article-tool">
+            {t}
+          </li>
+        ))}
+      </ul>
+
+      <p className="ppanel__article-note">
+        Details drawn from my resume. Happy to walk through specifics in an interview.
+      </p>
+    </article>
   )
 }
 
-/** The systems as a logo-first grid, in a scrolling window. */
-export function AIWindow() {
-  return (
-    <SectionWindow label="Your systems">
-      <AIStackGrid />
-    </SectionWindow>
-  )
-}
-export function AppsWindow() {
-  return (
-    <SectionWindow label="Your apps">
-      <AppsSection />
-    </SectionWindow>
-  )
-}
+const byId = (id: string) => workProjects.find((p) => p.id === id) as WorkProject
 
-/** The plan document, full height, straight away. */
-export function PlanPanel() {
-  return (
-    <div className="ppanel ppanel--frame">
-      <FrameBar
-        host="yourdomain.com"
-        path="/sample-plan"
-      />
-      <LiveFrame src="/placeholders/sample-plan.html" title="Sample document" />
-    </div>
-  )
-}
+export const InternshipPanel = () => (
+  <SectionWindow label="project - internship report">
+    <WorkArticle p={byId('internship')} />
+  </SectionWindow>
+)
 
-/** `src` is a local page framed in the panel; `path` is what the fake
- *  address bar shows. Point these at your own pages. */
-type Build = { id: string; label: string; src: string; path: string; Icon: Icon }
+export const OpsAnalysisPanel = () => (
+  <SectionWindow label="project - operational analysis">
+    <WorkArticle p={byId('operational-analysis')} />
+  </SectionWindow>
+)
 
-const BUILDS: Build[] = [
-  { id: 'ticketing', label: 'Featured Project One', src: '/placeholders/sample-plan.html?doc=1', path: '/featured-one', Icon: Ticket },
-  { id: 'framework', label: 'Featured Project Two', src: '/placeholders/sample-plan.html?doc=2', path: '/featured-two', Icon: Robot },
-  { id: 'workflow', label: 'Featured Project Three', src: '/placeholders/sample-plan.html?doc=3', path: '/featured-three', Icon: FlowArrow },
-]
-
-/** One build, framed, open on arrival. */
-function BuildPanel({ build }: { build: Build }) {
-  return (
-    <div className="ppanel ppanel--frame">
-      <FrameBar host="yourdomain.com" path={build.path} />
-      <LiveFrame src={build.src} title={build.label} />
-    </div>
-  )
-}
-export const TicketingPanel = () => <BuildPanel build={BUILDS[0]} />
-export const FrameworkPanel = () => <BuildPanel build={BUILDS[1]} />
-export const WorkflowPanel = () => <BuildPanel build={BUILDS[2]} />
-
-function FrameBar({ host, path }: { host: string; path: string }) {
-  return (
-    <div className="ppanel__bar">
-      <span className="ppanel__dots" aria-hidden="true">
-        <i />
-        <i />
-        <i />
-      </span>
-      <span className="ppanel__url">
-        <span className="ppanel__url-host">{host}</span>
-        <span className="ppanel__url-path">{path}</span>
-      </span>
-    </div>
-  )
-}
-
-/** Matches `pmodal-panel` (420ms). Same-site frames share the portfolio's
- *  main thread, so loading one mid-animation stalled the open by 100ms+. */
-const FRAME_DELAY_MS = 440
-
-function LiveFrame({ src, title }: { src: string; title: string }) {
-  const [ready, setReady] = useState(false)
-  const [mounted, setMounted] = useState(false)
-  useEffect(() => {
-    const id = window.setTimeout(() => setMounted(true), FRAME_DELAY_MS)
-    return () => window.clearTimeout(id)
-  }, [])
-  return (
-    <div className="ppanel__stage">
-      {!ready && <div className="ppanel__skeleton" aria-hidden="true" />}
-      {mounted && <iframe
-        className="ppanel__iframe"
-        src={src}
-        title={title}
-        loading="eager"
-        onLoad={() => setReady(true)}
-        data-ready={ready ? 'true' : 'false'}
-      />}
-    </div>
-  )
-}
+export const SulambiPanel = () => (
+  <SectionWindow label="project - sulambi vosa">
+    <WorkArticle p={byId('sulambi-vosa')} />
+  </SectionWindow>
+)

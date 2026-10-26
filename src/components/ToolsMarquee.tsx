@@ -4,7 +4,6 @@ import { useMemo } from 'react'
  * ToolsMarquee
  *
  * Horizontally scrolling strip of brand logos + labels for the tools you work with.
- * PLACEHOLDER - swap the list below for your own tools (icons live in public/icons/).
  * The strip lives on the cream shader page, NOT inside a dark section.
  *
  * Implementation notes:
@@ -38,17 +37,15 @@ type Tool = {
 }
 
 export const tools: Tool[] = [
-  { name: 'Claude Code',          iconPath: '/icons/claude-code-logo.png' },
-  { name: 'Codex',                iconPath: '/icons/codex.svg',           color: '#000000' },
-  { name: 'Cursor',               iconPath: '/icons/cursor.svg',          color: '#0F172A' },
-  { name: 'Hermes AI',            iconPath: '/icons/nousresearch.svg',    color: '#18181B' },
-  { name: 'VS Code',              iconPath: '/icons/vscode.svg' },
-  { name: 'GoHighLevel',          iconPath: '/icons/gohighlevel.png' },
-  { name: 'Lightspeed X-Series',  iconPath: '/icons/lightspeed.png' },
-  { name: 'Google Workspace',     iconPath: '/icons/googleworkspace.svg' },
-  { name: 'Zendesk',              iconPath: '/icons/zendesk.svg',         color: '#03363D' },
-  { name: 'Intercom',             iconPath: '/icons/intercom.svg',        color: '#1F8DED' },
-  { name: 'Slack',                iconPath: '/icons/slack.svg',           color: '#611F69' },
+  { name: 'Microsoft Excel',     iconPath: '/icons/data/excel.svg',         color: '#107C41' },
+  { name: 'Power BI',            iconPath: '/icons/data/power-bi.svg',      color: '#F2C811' },
+  { name: 'Looker Studio',       iconPath: '/icons/data/looker-studio.svg', color: '#2088FF' },
+  { name: 'SQL',                 iconPath: '/icons/data/mysql.svg',         color: '#4479A1' },
+  { name: 'PostgreSQL',          iconPath: '/icons/ai/postgresql.svg' },
+  { name: 'MariaDB',             iconPath: '/icons/data/mariadb.svg',       color: '#003545' },
+  { name: 'Python',              iconPath: '/icons/data/python.svg',        color: '#3776AB' },
+  { name: 'Google Workspace',    iconPath: '/icons/googleworkspace.svg' },
+  { name: 'React',               iconPath: '/icons/ai/react.svg',           color: '#087EA4' },
 ]
 
 export default function ToolsMarquee() {

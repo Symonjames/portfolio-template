@@ -1,20 +1,15 @@
 import type { CSSProperties } from 'react'
 import { MagnetStraight, Timer, Trophy, CheckCircle } from '@/components/slab'
 import type { Icon } from '@/components/slab'
-import Autopilot, { TOOLS } from '@/components/Autopilot'
 
 /**
- * ServicesGrid - the Services view on one glass sheet.
+ * ServicesGrid - the Skills view on one glass sheet.
  *
- * Three bands, top to bottom: your three-step method (on a dark plate so it
- * is the first thing the eye lands on), the five services as cards that carry
- * the marks of what each one is built with, and the live automation demo
- * scaled into whatever height is left. Same object language as Home and
- * Projects: the glass, the bento card, plated marks, orange for the index
- * and the accent.
- *
- * Every string below is a PLACEHOLDER. Replace it, or hand this file to your
- * AI assistant and tell it what to put in each spot.
+ * Three bands, top to bottom: the three-step analysis method (on a dark plate
+ * so it is the first thing the eye lands on), and the five skill areas as
+ * cards that carry the marks of the tools each one is built with.
+ * Same object language as Home and Projects: the glass, the bento card,
+ * plated marks, orange for the index and the accent.
  */
 
 /* ---------- The method ---------- */
@@ -31,43 +26,37 @@ const STAGES: Stage[] = [
   {
     index: '01',
     label: 'Step 1',
-    body: 'PLACEHOLDER - one line on what happens in this step.',
+    body: 'Frame the question: what decision needs support, and which data answers it.',
     Icon: MagnetStraight,
-    chips: ['Tag 1', 'Tag 2', 'Tag 3', 'Tag 4'],
+    chips: ['KPI tracking', 'Resource planning', 'Business process analysis'],
   },
   {
     index: '02',
     label: 'Step 2',
-    body: 'PLACEHOLDER - one line on what happens in this step.',
+    body: 'Clean and validate: structure, consistency, completeness checked before anything is charted.',
     Icon: Timer,
-    chips: ['Tag 1', 'Tag 2', 'Tag 3'],
+    chips: ['Data cleaning', 'Validation', 'Excel structuring'],
   },
   {
     index: '03',
     label: 'Step 3',
-    body: 'PLACEHOLDER - one line on the result the client gets.',
+    body: 'Analyze and present: descriptive and comparative analysis, communicated in visuals stakeholders can act on.',
     Icon: Trophy,
-    chips: ['Tag 1', 'Tag 2', 'Tag 3'],
+    chips: ['Dashboards', 'Analytical reporting', 'Data presentation'],
   },
 ]
 
-/* ---------- The services ---------- */
+/* ---------- The skills ---------- */
 
-// Example tool marks from /public/icons. Swap for the tools you actually use.
-const GHL = '/icons/gohighlevel.png'
+const EXCEL = '/icons/data/excel.svg'
+const POWER_BI = '/icons/data/power-bi.svg'
+const LOOKER = '/icons/data/looker-studio.svg'
+const SQL = '/icons/data/mysql.svg'
+const POSTGRES = '/icons/ai/postgresql.svg'
+const PYTHON = '/icons/data/python.svg'
 const REACT = '/icons/ai/react.svg'
-const TAILWIND = '/icons/ai/tailwindcss.svg'
-const VITE = '/icons/ai/vite.svg'
-const CLOUDFLARE = '/icons/ai/cloudflare.svg'
-const N8N = '/icons/ai/n8n.svg'
-const OPENAI = '/icons/openai.svg'
-const GWS = '/icons/googleworkspace.svg'
-const SLACK = '/icons/slack.svg'
-const CLAUDE_CODE = '/icons/claude-code-logo.png'
-const EXPO = '/icons/ai/expo.svg'
-const CHROME = '/icons/ai/googlechrome.svg'
 
-type Service = {
+type Skill = {
   index: string
   title: string
   description: string
@@ -76,49 +65,66 @@ type Service = {
   bullets: string[]
 }
 
-const BULLETS = ['PLACEHOLDER benefit 1', 'PLACEHOLDER benefit 2', 'PLACEHOLDER benefit 3']
-const SERVICE_DESC = 'PLACEHOLDER - one line on this service.'
-
-const SERVICES: Service[] = [
+const SKILLS: Skill[] = [
   {
     index: '01',
-    title: 'Service One',
-    description: SERVICE_DESC,
-    chip: 'PLACEHOLDER',
-    logos: [GHL, REACT, TAILWIND],
-    bullets: BULLETS,
+    title: 'Data cleaning & validation',
+    description: 'Raw data in, reliable data out: accuracy, consistency, completeness.',
+    chip: 'Microsoft Excel',
+    logos: [EXCEL],
+    bullets: [
+      'Structured and validated Excel datasets for reporting reliability',
+      'Data validation and completeness checks before analysis',
+      'Exploratory and trend analysis on messy operational data',
+    ],
   },
   {
     index: '02',
-    title: 'Service Two',
-    description: SERVICE_DESC,
-    chip: 'PLACEHOLDER',
-    logos: [GHL, N8N, OPENAI],
-    bullets: BULLETS,
+    title: 'Dashboards & visualization',
+    description: 'Reports and dashboards that make findings obvious at a glance.',
+    chip: 'Power BI · Looker Studio',
+    logos: [POWER_BI, LOOKER],
+    bullets: [
+      'Dashboard development in Power BI and Looker Studio',
+      'Excel charts and analytical presentations for stakeholders',
+      'Visual reporting that supports monitoring and decisions',
+    ],
   },
   {
     index: '03',
-    title: 'Service Three',
-    description: SERVICE_DESC,
-    chip: 'PLACEHOLDER',
-    logos: [GHL, GWS, SLACK],
-    bullets: BULLETS,
+    title: 'SQL & database querying',
+    description: 'Query and manage relational databases with confidence.',
+    chip: 'SQL · MySQL · PostgreSQL',
+    logos: [SQL, POSTGRES],
+    bullets: [
+      'Relational database querying in MySQL and PostgreSQL',
+      'MariaDB administration basics',
+      'SQL for data processing and descriptive analytics',
+    ],
   },
   {
     index: '04',
-    title: 'Service Four',
-    description: SERVICE_DESC,
-    chip: 'PLACEHOLDER',
-    logos: [REACT, VITE, CLOUDFLARE],
-    bullets: BULLETS,
+    title: 'Python & web tooling',
+    description: 'Python for data processing, plus front-end fundamentals.',
+    chip: 'Python · React · TypeScript',
+    logos: [PYTHON, REACT],
+    bullets: [
+      'Python for data processing and descriptive analytics',
+      'React and TypeScript fundamentals from my IT degree',
+      'Analytics layered onto web systems (capstone work)',
+    ],
   },
   {
     index: '05',
-    title: 'Service Five',
-    description: SERVICE_DESC,
-    chip: 'PLACEHOLDER',
-    logos: [CLAUDE_CODE, EXPO, CHROME],
-    bullets: BULLETS,
+    title: 'Operational & KPI analysis',
+    description: 'Analysis aimed at planning: gaps, trends, priorities.',
+    chip: 'Descriptive analytics',
+    logos: [EXCEL, POWER_BI],
+    bullets: [
+      'KPI tracking and performance analysis across periods',
+      'Comparative analysis for resource allocation and budgets',
+      'Process improvement and data-driven decision support',
+    ],
   },
 ]
 
@@ -141,28 +147,28 @@ export default function ServicesGrid() {
   return (
     <section className="pgrid sgrid" aria-labelledby="services-title">
       <header className="pgrid__head">
-        <span className="pgrid__eyebrow">Services</span>
+        <span className="pgrid__eyebrow">Skills</span>
         <h1 className="pgrid__title" id="services-title">
-          Your services headline, in one short line.
+          How I take a dataset from raw to decision-ready.
         </h1>
         <p className="pgrid__lede">
-          PLACEHOLDER - tell me what to put here: one line on what you offer.
+          The tools and methods I work with, and the way I run an analysis from start to finish.
         </p>
       </header>
 
       <div className="home__glass sgrid__glass">
-        {/* One dark plate, the headline on the left, the three stages wired
-            in order on the right with a signal running them. */}
+        {/* One dark plate: the headline on the left, the three stages wired in
+            order on the right. */}
         <div className="sgrid__method" aria-labelledby="method-title">
           <div className="sgrid__method-copy">
-            <span className="sgrid__method-eyebrow">Your Method</span>
+            <span className="sgrid__method-eyebrow">My method</span>
             <h2 className="sgrid__method-title" id="method-title">
-              One. Two. Three.
+              Frame.
               <br />
-              <span>Your method, in three steps.</span>
+              <span>Clean. Analyze. Present.</span>
             </h2>
             <p className="sgrid__method-sub">
-              PLACEHOLDER - one sentence on why your method works.
+              Every analysis follows the same disciplined path, so the results hold up when someone checks them.
             </p>
           </div>
 
@@ -191,11 +197,11 @@ export default function ServicesGrid() {
         {/* Five cards, each carrying the marks of what it is built with. */}
         <div className="sgrid__offers">
           <div className="sgrid__offers-head">
-            <h2 className="sgrid__offers-title">Your services, listed.</h2>
-            <p className="sgrid__offers-sub">PLACEHOLDER - one short nudge.</p>
+            <h2 className="sgrid__offers-title">Skills, listed.</h2>
+            <p className="sgrid__offers-sub">What each area covers in practice.</p>
           </div>
           <ul className="bento sgrid__services" role="list">
-            {SERVICES.map((s) => (
+            {SKILLS.map((s) => (
               <li key={s.title} className="bento__card sgrid__service">
                 <span className="bento__head">
                   <span className="sgrid__service-top">
@@ -217,31 +223,6 @@ export default function ServicesGrid() {
               </li>
             ))}
           </ul>
-        </div>
-
-        {/* The live workflow. Its caption and the tool chips sit in a header
-            above the window, so the canvas gets the whole glass width. */}
-        <div className="sgrid__flow">
-          <header className="sgrid__flow-head">
-            <div className="sgrid__flow-copy">
-              <span className="sgrid__flow-eyebrow">Live automation</span>
-              <h2 className="sgrid__flow-title">Your automation headline.</h2>
-              <p className="sgrid__flow-sub">
-                PLACEHOLDER - tell me what to put here: one sentence on what this example automation does for a client.
-              </p>
-            </div>
-            <ul className="sgrid__flow-tools" role="list" aria-label="Tools that power this flow">
-              {TOOLS.map(({ Icon: ToolIcon, label }) => (
-                <li key={label} className="sgrid__flow-tool">
-                  <ToolIcon size={14} weight="duotone" aria-hidden="true" />
-                  <span>{label}</span>
-                </li>
-              ))}
-            </ul>
-          </header>
-          <div className="sgrid__flow-main">
-            <Autopilot compact maxScale={1.08} />
-          </div>
         </div>
       </div>
     </section>

@@ -109,7 +109,7 @@ export default function ThankYou() {
           <span className="thankyou__eyebrow">Message received</span>
           <h1 className="thankyou__heading">Got it. Talk soon.</h1>
           <p className="thankyou__body">
-            I'll review your message and follow up within 24 hours with next steps and a booking link.
+            I'll review your message and follow up within a couple of business days.
             Check your inbox - and your spam folder just in case.
           </p>
 

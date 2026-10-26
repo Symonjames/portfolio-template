@@ -72,6 +72,15 @@
 .home__cta svg { color: var(--orange); }
 .home__cta:hover { transform: translateY(-2px); }
 
+/* The secondary hero action: outlined pill beside the main CTA. */
+.home__cta--ghost {
+  background: transparent;
+  color: var(--navy);
+  box-shadow: inset 0 0 0 1px var(--line-strong);
+}
+.home__cta--ghost svg { color: var(--orange-ink); }
+.home__cta-row { display: flex; gap: 10px; align-items: center; flex-shrink: 0; }
+
 /* One line, from 1400px up.
    The sentence is 130 characters. Measured against the panel it needs roughly
    0.65 x the viewport width to sit on one line, and the panel only offers that

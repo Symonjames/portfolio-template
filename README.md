@@ -29,6 +29,22 @@ npm run build      # typecheck + production build to dist/
 npm run lint       # ESLint with the TypeScript parser and the React hooks rules
 ```
 
+## Deploy to GitHub Pages
+
+This repository includes a GitHub Actions workflow at
+`.github/workflows/deploy.yml`. To publish the site:
+
+1. Push the repository to GitHub.
+2. Open **Settings → Pages** in the repository.
+3. Under **Build and deployment**, set **Source** to **GitHub Actions**.
+4. Push to `main`, or manually run the **Deploy to GitHub Pages** workflow from
+   the **Actions** tab.
+
+The site will be available at
+`https://brewed-ops.github.io/portfolio-template/`. If you rename the
+repository, update the `base` value in `vite.config.ts` to match the new
+repository name.
+
 ## Make it yours
 
 Every spot that needs your content says **PLACEHOLDER** and describes what goes there. You can edit the files yourself, or open the repo in an AI coding tool and tell it what to put in each spot.
@@ -38,24 +54,15 @@ Every spot that needs your content says **PLACEHOLDER** and describes what goes 
 | Name, handle, photo, email, socials, Home headline, phone stats and their icons | `src/data/profile.ts` (start here) |
 | Phone headline size (holds your headline on one line) | `--headline-em` in `src/styles/mobile-pass.css` - the comment there shows how to measure it |
 | Your photo | `public/avatar.svg` (or point `avatarSrc` at a `.webp`/`.png`) |
-| Page headlines and copy | the top of each page component: `ProjectsGrid`, `ServicesGrid`, `ShowcaseGrid`, `TestimonialsGrid`, `AboutGrid`, `ContactGrid` in `src/components/` |
-| Funnel pages and websites (the 3D carousel) | `src/data/funnels.ts` + HTML files in `public/funnels/` and `public/samples/` |
-| Projects, apps, side builds | `src/data/projects.ts`, `src/data/ai-stack.ts` |
+| Page headlines and copy | the top of each page component: `ProjectsGrid`, `ServicesGrid`, `ShowcaseGrid`, `AboutGrid`, `ContactGrid` in `src/components/` |
+| Projects and experience | `src/data/projects.ts` (the three cards + detail dialogs in `ProjectPanels.tsx`) |
 | FAQs | `src/data/faqs.ts` |
 | Tools marquee | `src/components/ToolsMarquee.tsx` (logos in `public/icons/`) |
-| Testimonial videos | `public/testimonials/`, then set `src` in `TestimonialsGrid.tsx` |
+| Education and certifications | `src/components/ShowcaseGrid.tsx` |
 | Contact form | `src/lib/contact.ts` (opens the visitor's email app by default; set `VITE_CONTACT_ENDPOINT` to post to your own backend) |
 | SEO, share image, favicon | `index.html`, `public/favicon.svg` |
 | Colors | `src/styles/tokens.css` |
 | Privacy / Terms | `src/components/Privacy.tsx`, `src/components/ToS.tsx` |
-
-### Adding your own funnels and websites
-
-1. Put the page's HTML in `public/funnels/` (single pages, shown 16:9) or `public/samples/` (full websites, shown 3:4).
-2. Add an entry to `src/data/funnels.ts`.
-3. Run `node scripts/make-thumbs.mjs` to render the thumbnails. It uses the Playwright install that comes with the dev dependencies (run `npx playwright install chromium` once if needed).
-
-To regenerate the placeholder pages: `node scripts/make-placeholder-sites.mjs`.
 
 ## Notes
 
