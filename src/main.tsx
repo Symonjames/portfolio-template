@@ -1,6 +1,6 @@
 import { StrictMode, lazy, Suspense } from 'react'
 import { createRoot } from 'react-dom/client'
-import { BrowserRouter, Routes, Route } from 'react-router-dom'
+import { HashRouter, Routes, Route } from 'react-router-dom'
 import App from './App'
 import Home from '@/components/Home'
 import NotFound from '@/components/NotFound'
@@ -57,7 +57,7 @@ if (!container) throw new Error('Root element #root not found')
 
 createRoot(container).render(
   <StrictMode>
-    <BrowserRouter>
+    <HashRouter>
       <Routes>
         {/* The shell owns the rail, the shader and the intro; each child
             renders into its one scrolling panel. */}
@@ -75,6 +75,6 @@ createRoot(container).render(
         <Route path="/thank-you" element={<Suspense fallback={null}><ThankYou /></Suspense>} />
         <Route path="*" element={<NotFound />} />
       </Routes>
-    </BrowserRouter>
+    </HashRouter>
   </StrictMode>,
 )

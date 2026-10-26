@@ -41,9 +41,10 @@ This repository includes a GitHub Actions workflow at
    the **Actions** tab.
 
 The site will be available at
-`https://brewed-ops.github.io/portfolio-template/`. If you rename the
-repository, update the `base` value in `vite.config.ts` to match the new
-repository name.
+`https://brewed-ops.github.io/portfolio-template/`. The app uses hash-based
+routes so links continue to work when opened directly on GitHub Pages. If you
+rename the repository, update the `base` value in `vite.config.ts` to match the
+new repository name.
 
 ## Make it yours
 
